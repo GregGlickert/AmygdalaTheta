@@ -1,0 +1,97 @@
+numprocs=50
+NEURON -- VERSION 8.2.2 HEAD (93d41fafd) 2022-12-15
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+2023-08-26 19:11:38,762 [INFO] Created log file
+2023-08-26 19:11:38,772 [INFO] Running NEURON with mpi (50 cores).
+Additional mechanisms from files
+ "modfiles/bg2pyr.mod" "modfiles/bginh.mod" "modfiles/cadyn.mod" "modfiles/cal2CA3.mod" "modfiles/cal2.mod" "modfiles/ca.mod" "modfiles/capoolCA3.mod" "modfiles/capool.mod" "modfiles/cas.mod" "modfiles/cat.mod" "modfiles/currentclamp.mod" "modfiles/function_TMonitor.mod" "modfiles/gap.mod" "modfiles/Gfluct_exc.mod" "modfiles/Gfluct_inh.mod" "modfiles/Gfluct.mod" "modfiles/halfgap.mod" "modfiles/hCA3.mod" "modfiles/h.mod" "modfiles/imCA3.mod" "modfiles/im.mod" "modfiles/interD2interD_SOMPV_STFD_new.mod" "modfiles/interD2interD_STFD_new.mod" "modfiles/interD2pyrD_CR2P_STFD_new.mod" "modfiles/interD2pyrD_SOM2P_STFD_new.mod" "modfiles/interD2pyrD_STFD_new.mod" "modfiles/kadist.mod" "modfiles/kaprox.mod" "modfiles/kca.mod" "modfiles/kdrca1DA.mod" "modfiles/kdrca1.mod" "modfiles/kdrCA3.mod" "modfiles/kdrinter.mod" "modfiles/leakCA3.mod" "modfiles/leakDA.mod" "modfiles/leakinter.mod" "modfiles/leak.mod" "modfiles/na3DA.mod" "modfiles/na3.mod" "modfiles/nainter.mod" "modfiles/napCA3.mod" "modfiles/nap.mod" "modfiles/natCA3.mod" "modfiles/nat.mod" "modfiles/pyrD2interD_P2CR_STFD.mod" "modfiles/pyrD2interD_P2SOM_STFD.mod" "modfiles/pyrD2interD_STFD.mod" "modfiles/pyrD2pyrD_STFD_new.mod" "modfiles/sahpCA3.mod" "modfiles/sahp.mod" "modfiles/sahpNE.mod" "modfiles/vecevent_coreneuron.mod"
+2023-08-26 19:11:39,124 [INFO] Building cells.
+2023-08-26 19:11:39,180 [INFO] Building recurrent connections
+2023-08-26 19:11:40,277 [INFO] Building virtual cell stimulations for vpsi_inh_spikes
+2023-08-26 19:11:40,479 [INFO] Building virtual cell stimulations for thalamus_pyr_spikes
+2023-08-26 19:11:40,524 [INFO] Building virtual cell stimulations for thalamus_pv_spikes
+2023-08-26 19:11:40,546 [INFO] Building virtual cell stimulations for thalamus_som_spikes
+2023-08-26 19:11:40,557 [INFO] Building virtual cell stimulations for thalamus_cr_spikes
+2023-08-26 19:11:40,834 [INFO] Running simulation for 15000.000 ms with the time step 0.100 ms
+2023-08-26 19:11:40,834 [INFO] Starting timestep: 0 at t_sim: 0.000 ms
+2023-08-26 19:11:40,834 [INFO] Block save every 5000 steps
+2023-08-26 19:11:49,750 [INFO]     step:5000 t_sim:500.00 ms
+2023-08-26 19:11:58,415 [INFO]     step:10000 t_sim:1000.00 ms
+2023-08-26 19:12:06,885 [INFO]     step:15000 t_sim:1500.00 ms
+2023-08-26 19:12:15,373 [INFO]     step:20000 t_sim:2000.00 ms
+2023-08-26 19:12:23,878 [INFO]     step:25000 t_sim:2500.00 ms
+2023-08-26 19:12:32,423 [INFO]     step:30000 t_sim:3000.00 ms
+2023-08-26 19:12:41,016 [INFO]     step:35000 t_sim:3500.00 ms
+2023-08-26 19:12:49,588 [INFO]     step:40000 t_sim:4000.00 ms
+2023-08-26 19:12:58,214 [INFO]     step:45000 t_sim:4500.00 ms
+2023-08-26 19:13:06,822 [INFO]     step:50000 t_sim:5000.00 ms
+2023-08-26 19:13:15,438 [INFO]     step:55000 t_sim:5500.00 ms
+2023-08-26 19:13:24,088 [INFO]     step:60000 t_sim:6000.00 ms
+2023-08-26 19:13:32,729 [INFO]     step:65000 t_sim:6500.00 ms
+2023-08-26 19:13:41,308 [INFO]     step:70000 t_sim:7000.00 ms
+2023-08-26 19:13:49,548 [INFO]     step:75000 t_sim:7500.00 ms
+2023-08-26 19:13:57,827 [INFO]     step:80000 t_sim:8000.00 ms
+2023-08-26 19:14:06,114 [INFO]     step:85000 t_sim:8500.00 ms
+2023-08-26 19:14:14,389 [INFO]     step:90000 t_sim:9000.00 ms
+2023-08-26 19:14:22,700 [INFO]     step:95000 t_sim:9500.00 ms
+2023-08-26 19:14:31,024 [INFO]     step:100000 t_sim:10000.00 ms
+2023-08-26 19:14:39,343 [INFO]     step:105000 t_sim:10500.00 ms
+2023-08-26 19:14:47,652 [INFO]     step:110000 t_sim:11000.00 ms
+2023-08-26 19:14:55,956 [INFO]     step:115000 t_sim:11500.00 ms
+2023-08-26 19:15:04,272 [INFO]     step:120000 t_sim:12000.00 ms
+2023-08-26 19:15:12,569 [INFO]     step:125000 t_sim:12500.00 ms
+2023-08-26 19:15:20,898 [INFO]     step:130000 t_sim:13000.00 ms
+2023-08-26 19:15:29,220 [INFO]     step:135000 t_sim:13500.00 ms
+2023-08-26 19:15:37,543 [INFO]     step:140000 t_sim:14000.00 ms
+2023-08-26 19:15:45,854 [INFO]     step:145000 t_sim:14500.00 ms
+2023-08-26 19:15:54,161 [INFO]     step:150000 t_sim:15000.00 ms
+2023-08-26 19:15:55,597 [INFO] Simulation completed in 4.0 minutes, 14.76 seconds 
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 3555468 RUNNING AT engr-nelvm-res
+=   EXIT CODE: 9
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Killed (signal 9)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
+Start: Sat Aug 26 19:11:33 CDT 2023 
+End:   Sat Aug 26 19:15:56 CDT 2023
+loading outputECP/spikes.h5
+done
+loading outputECP/ecp.h5
+done
+plotting...
+
+FOOOF WARNING: Lower-bound peak width limit is < or ~= the frequency resolution: 0.98 <= 0.50
+	Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
+	Too low a limit may lead to overfitting noise as small bandwidth peaks.
+	We recommend a lower bound of approximately 2x the frequency resolution.
+
+
+    
+Mean theta (4Hz-8Hz)  : 1.53e-06
+Mean gamma (50Hz-60Hz) : 3.4e-07 
+    
+Peak theta (4Hz-8Hz)  : 2.29e-06
+Peak gamma (50Hz-60Hz) : 4.6e-07
+    
+    Type : mean (std)
+PN : 0.44 (0.21)
+PV : 6.62 (2.20)
+SOM : 9.35 (1.62)
+CR : 7.31 (0.91)
+
+saving analysis.png
+Traceback (most recent call last):
+  File "analysis_hom.py", line 186, in <module>
+    run(show_plots = args.show_plots, save_plots = args.save_plots, tstop=args.tstop, path=args.path)
+  File "analysis_hom.py", line 171, in run
+    import upload_analysis_slack
+  File "/home/gjgpb9/AmygdalaTheta-logan/upload_analysis_slack.py", line 2, in <module>
+    import slack
+ModuleNotFoundError: No module named 'slack'

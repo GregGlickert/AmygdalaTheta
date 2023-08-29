@@ -210,7 +210,7 @@ def load():
 
     return
 
-def syn_params_dicts(syn_dir='components/synaptic_models'):
+def syn_params_dicts(syn_dir='components_homogenous/synaptic_models'):
     """
     returns: A dictionary of dictionaries containing all
     properties in the synapse json files

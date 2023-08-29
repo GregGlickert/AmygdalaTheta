@@ -14,7 +14,7 @@ from bmtk.utils.sim_setup import build_env_bionet
 from bmtk.builder import NetworkBuilder
 
 from connectors import (one_to_one, one_to_one_offset, syn_dist_delay_feng_section, syn_uniform_delay_section,
-                        syn_percent_o2a, recurrent_connector_o2a)
+                        syn_percent_o2a, recurrent_connector_o2a, simple_rand)
 
 from connectors import init_connectors
 
@@ -25,8 +25,12 @@ np.random.seed(123412)
 
 network_dir = 'network'
 components_dir = 'components'
-t_sim = 15000.0
-dt = 0.05
+if os.environ.get("TSTOP"):
+    t_sim = float(os.environ.get("TSTOP"))
+else:
+    t_sim = 15000.0
+print(f'TSTOP set to {t_sim}')
+dt = 0.1
 scale = 1
 
 min_conn_dist = 0.0
@@ -42,6 +46,8 @@ numPN_C = 231
 numPV = 93
 numSOM = 51
 numCR = 56
+
+numVPSI = 100
 
 if __name__ == '__main__':
     if 'feng_homogenous' in sys.argv:
@@ -81,6 +87,7 @@ numPV = int(numPV * scale) #100 * scale #854#4860
 numSOM = int(numSOM * scale) #42 * scale
 numCR = int(numCR * scale) #42 * scale
 num_cells = numPN_A + numPN_C + numPV + numSOM + numCR #Only used to populate an overall position list
+numVPSI = int(numVPSI * scale)
 num_shell_cells = 0
 
 # Create the possible x,y,z coordinates
@@ -215,7 +222,7 @@ network_definitions = [
         'positions_list':None,
         'cells':[
             {
-                'N':numPN_A+numPN_C+numPV,
+                'N':numVPSI,
                 'pop_name':'inh_inp',
                 'pop_group':'vpsi_inh',
                 'model_type':'virtual'
@@ -751,7 +758,9 @@ edge_params = {
         'target_sections':['basal']
     },
     'VPSIinh2PYR': {
-        'connection_rule':one_to_one,
+        'iterator':'one_to_all',
+        'connection_rule':syn_percent_o2a,
+        'connection_params':{'p':0.10/scale}, # connect a PN cell to a VPSI cell 10% of the time
         'syn_weight':1,
         'dynamics_params':'VPSI2PN_inh_tyler_min.json',
         'distance_range':[0.0, 9999.9],
@@ -760,7 +769,7 @@ edge_params = {
     'VPSIinh2PV': {
         'iterator':'one_to_all',
         'connection_rule':syn_percent_o2a,
-        'connection_params':{'p':0.012/scale}, # We need aprox 10 aff to each PV
+        'connection_params':{'p':0.90/scale}, # connect a PV cell to a VPSI cell 90% of the time #{'p':0.012/scale}, 
         'syn_weight':1,
         'dynamics_params':'VPSI2PV_inh_tyler_min.json',
         'distance_range':[0.0, 9999.9],
@@ -774,7 +783,8 @@ edge_params = {
         'target_sections':['basal']
     },
     'THALAMUS2PV': {
-        'connection_rule':one_to_one,
+        'connection_rule':one_to_one_offset,
+        'connection_params':{'offset':numPN_A+numPN_C},
         'syn_weight':1,
         'dynamics_params':'BG2PNi_feng_min.json',
         'distance_range':[0.0, 9999.9],
@@ -943,6 +953,19 @@ syn = synapses.syn_params_dicts()
 # Build your edges into the networks
 build_edges(networks, edge_definitions,edge_params,edge_add_properties,syn)
 
+net = networks['BLA']
+population = net.nodes(pop_name='PV')
+net.add_gap_junctions(source=population, target=population,resistance=0.0005,connection_rule=simple_rand,
+                      connection_params={'prob':0.08})
+
+population = net.nodes(pop_name='SOM')
+net.add_gap_junctions(source=population, target=population,resistance=0.0005,connection_rule=simple_rand,
+                      connection_params={'prob':0.08})
+
+population = net.nodes(pop_name='CR')
+net.add_gap_junctions(source=population, target=population,resistance=0.0005,connection_rule=simple_rand,
+                      connection_params={'prob':0.08})
+
 # Save the network into the appropriate network dir
 save_networks(networks,network_dir)
 
@@ -990,7 +1013,8 @@ generate_node_sets(scale)
 
 #Build VSPI input spikes
 from build_input_vpsi_inh_spikes import build_vpsi_input
-build_vpsi_input(scale)
+build_vpsi_input(t_sim=t_sim, n_cells=numVPSI, depth_of_mod=1, output='vpsi_inh_spikes.h5')
+build_vpsi_input(t_sim=t_sim,n_cells=numVPSI, depth_of_mod=0, output='vpsi_inh_spikes_0_depth.h5')
 
 profile_stats = pstats.Stats(profiler).sort_stats('tottime')
 profile_stats.print_stats(100)

@@ -1,6 +1,0 @@
-node_type_id model_type pop_name model_template a_name
-100 biophysical PyrA hoc:Cell_Af PN
-101 biophysical PyrC hoc:Cell_Cf PN
-102 biophysical PV hoc:InterneuronCellf PV
-103 biophysical SOM hoc:SOM_Cell SOM
-104 biophysical CR hoc:CR_Cell CR

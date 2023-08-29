@@ -12,11 +12,11 @@ def init_connectors(total_cells):
 ##############################################################################
 ############################## CONNECT CELLS #################################
 
-def one_to_one(source, target):
+def one_to_one(source, target, p=1):
     
     sid = source.node_id
     tid = target.node_id
-    if sid == tid:
+    if sid == tid and random.random() < p:
     #print("connecting cell {} to {}".format(sid,tid))
         tmp_nsyn = 1
     else:
@@ -24,12 +24,12 @@ def one_to_one(source, target):
 
     return tmp_nsyn
 
-def one_to_one_offset(source, target, offset=0):
+def one_to_one_offset(source, target, offset=0, p=1):
 
     sid = source.node_id
     tid = target.node_id - offset
-    if sid == tid:
-        #print("connecting cell {} to {}".format(sid,tid))
+    if sid == tid and random.random() < p:
+        print("connecting cell {} to {}".format(sid,tid))
         tmp_nsyn = 1
     else:
         #print("NOT connecting cell {} to {}".format(sid,tid))
@@ -400,3 +400,12 @@ def recurrent_connector_o2a(source,targets,p,all_edges=[],min_syn=1,max_syn=1):
     all_synapses[sid][chosen] = True
     #any index selected will be set to 1 and returned
     return syns
+
+def simple_rand(source,target,prob):
+    sid = source.node_id                        
+    tid = target.node_id
+    if sid != tid:
+        if np.random.uniform() > prob:
+            return 0
+        else:
+            return 1

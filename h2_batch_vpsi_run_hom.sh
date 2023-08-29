@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #SBATCH -N 1
-#SBATCH -n 24
+#SBATCH -n 50
 #SBATCH --qos=normal
 #SBATCH --job-name=amygdala_theta
-#SBATCH --output=amygdala_batch_%j.out
+#SBATCH --output=amygdala_batch.out
 #SBATCH --time 0-24:00
 
 START=$(date)
